@@ -34,7 +34,7 @@ const INJECTED_JS = `
     var streamBtn = document.getElementById('toggle-stream');
     if (streamBtn) streamBtn.click();
     var streamImg = document.getElementById('stream');
-    if (streamImg) { streamImg.style.width = '100vw'; streamImg.style.height = '100vh'; streamImg.style.objectFit = 'contain'; streamImg.style.marginTop = '0'; }
+    if (streamImg) { streamImg.style.width = '100vw'; streamImg.style.height = '100vh'; streamImg.style.objectFit = 'fill'; streamImg.style.marginTop = '0'; }
     var streamContainer = document.getElementById('stream-container');
     if (streamContainer) { streamContainer.style.width = '100vw'; streamContainer.style.height = '100vh'; }
     window.ReactNativeWebView.postMessage('loaded');
@@ -47,7 +47,6 @@ export default function CameraScreen() {
   const [error, setError] = useState(false);
   const [key, setKey] = useState(0);
 
-  // Forzar modo horizontal al entrar
   useEffect(() => {
     ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.LANDSCAPE);
     return () => {
@@ -65,7 +64,6 @@ export default function CameraScreen() {
     <View style={styles.safe}>
       <StatusBar hidden />
 
-      {/* Visor a pantalla completa */}
       <View style={styles.viewer}>
         {loading && !error && (
           <View style={styles.overlay}>
@@ -101,7 +99,6 @@ export default function CameraScreen() {
           mediaPlaybackRequiresUserAction={false}
         />
 
-        {/* Badge IP esquina superior izquierda */}
         {!loading && !error && (
           <View style={styles.badge}>
             <View style={styles.liveDot} />
@@ -109,7 +106,6 @@ export default function CameraScreen() {
           </View>
         )}
 
-        {/* Botón reload esquina superior derecha */}
         {!loading && !error && (
           <TouchableOpacity style={styles.reloadBtn} onPress={reload}>
             <Text style={styles.reloadText}>↺</Text>
@@ -121,18 +117,9 @@ export default function CameraScreen() {
 }
 
 const styles = StyleSheet.create({
-  safe: {
-    flex: 1,
-    backgroundColor: "#000",
-  },
-  viewer: {
-    flex: 1,
-    backgroundColor: "#000",
-  },
-  webview: {
-    flex: 1,
-    backgroundColor: "#000",
-  },
+  safe: { flex: 1, backgroundColor: "#000" },
+  viewer: { flex: 1, backgroundColor: "#000" },
+  webview: { flex: 1, backgroundColor: "#000" },
   overlay: {
     ...StyleSheet.absoluteFillObject,
     zIndex: 10,
@@ -141,11 +128,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     gap: 14,
   },
-  overlayText: {
-    color: "#666",
-    fontSize: 14,
-    letterSpacing: 1,
-  },
+  overlayText: { color: "#666", fontSize: 14, letterSpacing: 1 },
   errorEmoji: { fontSize: 40 },
   retryBtn: {
     marginTop: 8,
@@ -156,11 +139,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "#00e5ff",
   },
-  retryText: {
-    color: "#00e5ff",
-    fontWeight: "700",
-    letterSpacing: 1,
-  },
+  retryText: { color: "#00e5ff", fontWeight: "700", letterSpacing: 1 },
   badge: {
     position: "absolute",
     top: 14,
@@ -175,18 +154,8 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "#ffffff15",
   },
-  liveDot: {
-    width: 7,
-    height: 7,
-    borderRadius: 4,
-    backgroundColor: "#ff2222",
-  },
-  badgeText: {
-    color: "#fff",
-    fontSize: 11,
-    fontWeight: "600",
-    letterSpacing: 1,
-  },
+  liveDot: { width: 7, height: 7, borderRadius: 4, backgroundColor: "#ff2222" },
+  badgeText: { color: "#fff", fontSize: 11, fontWeight: "600", letterSpacing: 1 },
   reloadBtn: {
     position: "absolute",
     top: 10,
@@ -200,9 +169,5 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "#ffffff15",
   },
-  reloadText: {
-    color: "#fff",
-    fontSize: 20,
-    lineHeight: 24,
-  },
+  reloadText: { color: "#fff", fontSize: 20, lineHeight: 24 },
 });
