@@ -139,11 +139,18 @@ export default function CameraScreen() {
         </View>
       )}
 
-      {/* Badge LIVE */}
+      {/* Badge LIVE - izquierda */}
       {!loading && !error && (
         <View style={styles.badge}>
           <View style={styles.liveDot} />
           <Text style={styles.badgeText}>EN VIVO  {CAM_IP}</Text>
+        </View>
+      )}
+
+      {/* Título empresa - derecha */}
+      {!loading && !error && (
+        <View style={styles.titleBadge}>
+          <Text style={styles.titleText}>AMBIETCARE</Text>
         </View>
       )}
 
@@ -218,4 +225,22 @@ const styles = StyleSheet.create({
     zIndex: 5,
   },
   reloadText: { color: "#fff", fontSize: 20, lineHeight: 24 },
+  titleBadge: {
+    position: "absolute",
+    top: 14,
+    right: 66,
+    backgroundColor: "#00000099",
+    paddingHorizontal: 14,
+    paddingVertical: 5,
+    borderRadius: 20,
+    borderWidth: 1,
+    borderColor: "#ffffff15",
+    zIndex: 5,
+  },
+  titleText: {
+    color: "#fff",
+    fontSize: 13,
+    fontWeight: "800",
+    letterSpacing: 3,
+  },
 });
